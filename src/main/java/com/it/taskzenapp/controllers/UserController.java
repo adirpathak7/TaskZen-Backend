@@ -2,9 +2,11 @@ package com.it.taskzenapp.controllers;
 
 import com.it.jpatest.exceptions.ResourceNotFoundException;
 import com.it.taskzenapp.entities.UserEntity;
+import com.it.taskzenapp.entities.UserEntity.Role;
 import com.it.taskzenapp.services.EmailService;
 import com.it.taskzenapp.services.UserService;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,32 +61,71 @@ public class UserController {
         return "Hello World!";
     }
 
-    @PostMapping(value = "/signUpUser")
-    public ResponseEntity signUpUser(@RequestBody UserEntity userEntity) {
+    @PostMapping(value = "/signUpUser", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Map<String, String>> signUpUser(
+            @RequestParam("first_name") String first_name,
+            @RequestParam("last_name") String last_name,
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            @RequestParam("role") Role role) {
+
         try {
+            UserEntity userEntity = new UserEntity(first_name, last_name, email, password, role);
             userService.signUpUser(userEntity);
-            return new ResponseEntity("User registered successfully.", HttpStatus.OK);
+
+            Map<String, String> signUpResponse = new HashMap<>();
+            signUpResponse.put("message", "User registered successfully.");
+            signUpResponse.put("data", "1");
+            return new ResponseEntity<>(signUpResponse, HttpStatus.OK);
         } catch (ResourceNotFoundException ex) {
-            return new ResponseEntity("User not found! " + ex.getMessage(), HttpStatus.NOT_FOUND);
+            Map<String, String> resNotFoundResponse = new HashMap<>();
+            resNotFoundResponse.put("error", "User not found! " + ex.getMessage());
+            resNotFoundResponse.put("data", "0");
+            return new ResponseEntity<>(resNotFoundResponse, HttpStatus.NOT_FOUND);
         } catch (IllegalArgumentException ex) {
-            return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+            Map<String, String> illArgExceResponse = new HashMap<>();
+            illArgExceResponse.put("error", ex.getMessage());
+            illArgExceResponse.put("data", "0");
+            return new ResponseEntity<>(illArgExceResponse, HttpStatus.BAD_REQUEST);
         } catch (Exception ex) {
             System.out.println("Something went wrong! " + ex.getMessage());
-            return new ResponseEntity("Something went wrong!", HttpStatus.BAD_REQUEST);
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", "Something went wrong!");
+            errorResponse.put("data", "0");
+            return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping(value = "/loginUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> loginUser(@RequestBody UserEntity userEntity) {
+    @PostMapping(value = "/loginUser", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Map<String, String>> loginUser(
+            @RequestParam("email") String email,
+            @RequestParam("password") String password) {
         try {
-            String userResponse = userService.loginUser(userEntity);
-            return new ResponseEntity<>(userResponse, HttpStatus.OK);
+            UserEntity userEntity = new UserEntity(email, password);
+            userService.loginUser(userEntity);
+
+            Map<String, String> signInResponse = new HashMap<>();
+            signInResponse.put("role", userService.loginUser(userEntity));
+            signInResponse.put("data", "1");
+            return new ResponseEntity<>(signInResponse, HttpStatus.OK);
         } catch (IllegalArgumentException ex) {
-            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+            Map<String, String> illArgExceResponse = new HashMap<>();
+            illArgExceResponse.put("error", ex.getMessage());
+            illArgExceResponse.put("data", "0");
+            return new ResponseEntity<>(illArgExceResponse, HttpStatus.BAD_REQUEST);
+        } catch (ResourceNotFoundException ex) {
+            Map<String, String> resNotFoundResponse = new HashMap<>();
+            resNotFoundResponse.put("error", "Email not exist! " + ex.getMessage());
+            resNotFoundResponse.put("data", "0");
+            return new ResponseEntity<>(resNotFoundResponse, HttpStatus.NOT_FOUND);
         } catch (Exception ex) {
-            System.out.println("Login faield! Please try again! " + ex.getMessage());
-            return new ResponseEntity<>("Login faield! Please try again.", HttpStatus.INTERNAL_SERVER_ERROR);
+//            System.out.println("Login faield! Please try again! " + ex.getMessage());
+//            return new ResponseEntity<>("Login faield! Please try again.", HttpStatus.INTERNAL_SERVER_ERROR);
+            System.out.println("Something went wrong! " + ex.getMessage());
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", "Something went wrong!");
+            errorResponse.put("data", "0");
+            return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

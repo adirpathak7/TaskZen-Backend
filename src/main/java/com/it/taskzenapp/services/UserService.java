@@ -71,9 +71,9 @@ public class UserService {
 
         String checkRole = existUser.getRole().toString();
         if (checkRole.equals("client")) {
-            return "Welcome, client.";
+            return "client";
         } else {
-            return "Welcome, company.";
+            return "company";
         }
     }
 }

@@ -33,10 +33,23 @@ public class UserEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-    
+
     private LocalDateTime createdAt;
 
     public UserEntity() {
+    }
+
+    public UserEntity(String first_name, String last_name, String email, String password, Role role) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    public UserEntity(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public UserEntity(int user_id, String first_name, String last_name, String email, String password, Role role, LocalDateTime createdAt) {
@@ -123,5 +136,5 @@ public class UserEntity {
             return value;
         }
     }
-    
+
 }
