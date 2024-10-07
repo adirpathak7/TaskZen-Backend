@@ -4,9 +4,11 @@
  */
 package com.it.taskzenapp.services;
 
+import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,14 +21,27 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    public EmailService(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
+
     public void sendEmail(String to, String subject, String body) {
         try {
-            SimpleMailMessage mail = new SimpleMailMessage();
-            mail.setTo(to);
-            mail.setSubject(subject);
-            mail.setText(body);
-            mail.setTo("adipathak7488@gmail.com");
-            javaMailSender.send(mail);
+            MimeMessage message = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true); // true indicates multipart message
+
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(body, true); // true for HTML content
+
+            javaMailSender.send(message);
+//            SimpleMailMessage mail = new SimpleMailMessage();
+//            mail.setTo(to);
+//            mail.setSubject(subject);
+//            mail.setText(body, true);
+//            
+////            mail.setFrom("adipathak7488@gmail.com");
+//            javaMailSender.send(mail);
         } catch (Exception ex) {
             System.err.println("Exception while sending email! " + ex.getMessage());
         }

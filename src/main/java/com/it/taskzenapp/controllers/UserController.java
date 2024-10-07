@@ -7,6 +7,7 @@ import com.it.taskzenapp.services.EmailService;
 import com.it.taskzenapp.services.UserService;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,6 +60,28 @@ public class UserController {
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
         return "Hello World!";
+    }
+
+    @GetMapping(value = "/getUsers")
+    public ResponseEntity<Map<String, String>> getUsers(UserEntity userEntity) {
+        List usersList = userService.getUsers(userEntity);
+        try {
+            Map<String, String> usersResponse = new HashMap<>();
+            if (usersList == null || usersList.isEmpty()) {
+                usersResponse.put("message", "User not found!");
+                usersResponse.put("data", "0");
+                return new ResponseEntity(usersResponse, HttpStatus.NOT_FOUND);
+            } else {
+                usersResponse.put("message", "Exist User's are.");
+                usersResponse.put("data", "1");
+                return new ResponseEntity(usersList, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", "Something went wrong! " + ex.getMessage());
+            errorResponse.put("data", "0");
+            return new ResponseEntity(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(value = "/signUpUser", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
