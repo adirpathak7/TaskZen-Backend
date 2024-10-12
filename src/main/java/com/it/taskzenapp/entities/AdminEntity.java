@@ -4,10 +4,13 @@
  */
 package com.it.taskzenapp.entities;
 
+import javax.persistence.Table;
+
 /**
  *
  * @author Aditya Pathak R
  */
+@Table
 public class AdminEntity {
     
 }
