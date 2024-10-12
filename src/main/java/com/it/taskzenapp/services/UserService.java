@@ -61,7 +61,7 @@ public class UserService {
                 + "<h1>Dear " + userEntity.getFirst_name() + " " + userEntity.getLast_name() + ",</h1>"
                 + "<p>Thank you for registering with us.</p>"
                 + "<p>We're excited to have you onboard!</p>"
-                + "<p><b>Hello</b></p>"
+                + "<p><b>Welcome to TaskZen!</b></p>"
                 + "</body>"
                 + "</html>";
 
