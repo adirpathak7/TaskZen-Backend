@@ -40,6 +40,7 @@ public class CompanyProjectEntity {
 
     @ManyToOne
     @JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
+    private SkillsEntity skillsEntity;
 
     private String duration;
     private LocalDateTime created_at;
@@ -47,13 +48,14 @@ public class CompanyProjectEntity {
     public CompanyProjectEntity() {
     }
 
-    public CompanyProjectEntity(int company_project_id, CompanyMasterEntity companyMasterEntity, ClientMasterEntity clientMasterEntity, String company_project_name, String details, String project_picture, String duration, LocalDateTime created_at) {
+    public CompanyProjectEntity(int company_project_id, CompanyMasterEntity companyMasterEntity, ClientMasterEntity clientMasterEntity, String company_project_name, String details, String project_picture, SkillsEntity skillsEntity, String duration, LocalDateTime created_at) {
         this.company_project_id = company_project_id;
         this.companyMasterEntity = companyMasterEntity;
         this.clientMasterEntity = clientMasterEntity;
         this.company_project_name = company_project_name;
         this.details = details;
         this.project_picture = project_picture;
+        this.skillsEntity = skillsEntity;
         this.duration = duration;
         this.created_at = created_at;
     }
@@ -104,6 +106,14 @@ public class CompanyProjectEntity {
 
     public void setProject_picture(String project_picture) {
         this.project_picture = project_picture;
+    }
+
+    public SkillsEntity getSkillsEntity() {
+        return skillsEntity;
+    }
+
+    public void setSkillsEntity(SkillsEntity skillsEntity) {
+        this.skillsEntity = skillsEntity;
     }
 
     public String getDuration() {

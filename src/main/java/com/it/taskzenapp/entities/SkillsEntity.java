@@ -5,11 +5,14 @@
 package com.it.taskzenapp.entities;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,6 +27,9 @@ public class SkillsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int skill_id;
+
+    @ManyToMany(mappedBy = "skills")
+    private Set<ClientMasterEntity> clients = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "client_id")
@@ -53,6 +59,14 @@ public class SkillsEntity {
 
     public void setSkill_id(int skill_id) {
         this.skill_id = skill_id;
+    }
+
+    public Set<ClientMasterEntity> getClients() {
+        return clients;
+    }
+
+    public void setClients(Set<ClientMasterEntity> clients) {
+        this.clients = clients;
     }
 
     public ClientMasterEntity getClientMasterEntity() {
@@ -86,4 +100,5 @@ public class SkillsEntity {
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
+
 }

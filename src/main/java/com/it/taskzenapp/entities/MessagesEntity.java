@@ -11,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -25,16 +26,16 @@ public class MessagesEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int message_id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "conv_seq")
+    @SequenceGenerator(name = "conv_seq", sequenceName = "conversation_seq", allocationSize = 1)
     private int conversation_id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sender_seq")
+    @SequenceGenerator(name = "sender_seq", sequenceName = "sender_seq", allocationSize = 1)
     private int sender_id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "receiver_seq")
+    @SequenceGenerator(name = "receiver_seq", sequenceName = "receiver_seq", allocationSize = 1)
     private int receiver_id;
 
     @Enumerated(EnumType.STRING)
@@ -44,7 +45,7 @@ public class MessagesEntity {
     private Receiver_Role receiver_role;
 
     private String message_content;
-    private LocalDateTime timestamp;
+    private LocalDateTime messageTime;
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -54,7 +55,7 @@ public class MessagesEntity {
     public MessagesEntity() {
     }
 
-    public MessagesEntity(int message_id, int conversation_id, int sender_id, int receiver_id, Sender_Role sender_role, Receiver_Role receiver_role, String message_content, LocalDateTime timestamp, Status status, LocalDateTime created_at) {
+    public MessagesEntity(int message_id, int conversation_id, int sender_id, int receiver_id, Sender_Role sender_role, Receiver_Role receiver_role, String message_content, LocalDateTime messageTime, Status status, LocalDateTime created_at) {
         this.message_id = message_id;
         this.conversation_id = conversation_id;
         this.sender_id = sender_id;
@@ -62,7 +63,7 @@ public class MessagesEntity {
         this.sender_role = sender_role;
         this.receiver_role = receiver_role;
         this.message_content = message_content;
-        this.timestamp = timestamp;
+        this.messageTime = messageTime;
         this.status = status;
         this.created_at = created_at;
     }
@@ -123,12 +124,12 @@ public class MessagesEntity {
         this.message_content = message_content;
     }
 
-    public LocalDateTime getTimestamp() {
-        return timestamp;
+    public LocalDateTime getMessageTime() {
+        return messageTime;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+    public void setMessageTime(LocalDateTime messageTime) {
+        this.messageTime = messageTime;
     }
 
     public Status getStatus() {

@@ -5,6 +5,8 @@
 package com.it.taskzenapp.entities;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -30,6 +34,14 @@ public class ClientMasterEntity {
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private UserEntity userEntity;
+
+    @ManyToMany
+    @JoinTable(
+            name = "client_skills",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id")
+    )
+    private Set<SkillsEntity> skills = new HashSet<>();
 
     private String contact;
     private String profile_picture;
@@ -76,6 +88,14 @@ public class ClientMasterEntity {
 
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
+    }
+
+    public Set<SkillsEntity> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Set<SkillsEntity> skills) {
+        this.skills = skills;
     }
 
     public String getContact() {
