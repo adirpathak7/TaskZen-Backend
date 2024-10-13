@@ -38,9 +38,8 @@ public class UserEntity {
 
     private LocalDateTime createdAt;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity userEntity;
+    @OneToOne(mappedBy = "userEntity")
+    private ClientMasterEntity clientMasterEntity;
 
     public UserEntity() {
     }

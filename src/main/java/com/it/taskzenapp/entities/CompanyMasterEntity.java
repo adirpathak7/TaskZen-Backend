@@ -28,7 +28,7 @@ public class CompanyMasterEntity {
     private int company_id;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private UserEntity userEntity;
 
     private String contact;
