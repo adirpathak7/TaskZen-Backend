@@ -36,11 +36,11 @@ public class PaymentEntity {
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     private CompanyMasterEntity companyMasterEntity;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "client_project_id", referencedColumnName = "client_project_id")
     private ClientProjectEntity clientProjectEntity;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "company_project_id", referencedColumnName = "company_project_id")
     private CompanyProjectEntity companyProjectEntity;
 

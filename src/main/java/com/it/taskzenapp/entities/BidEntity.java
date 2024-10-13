@@ -35,6 +35,10 @@ public class BidEntity {
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     private CompanyMasterEntity companyMasterEntity;
 
+    @ManyToOne
+    @JoinColumn(name = "company_post_id", referencedColumnName = "company_post_id")
+    private CompanyPostEntity companyPostEntity;
+
     private String bid_amount;
     private String proposal;
 

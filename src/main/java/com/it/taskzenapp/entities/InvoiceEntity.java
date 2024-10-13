@@ -36,19 +36,19 @@ public class InvoiceEntity {
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     private CompanyMasterEntity companyMasterEntity;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "client_project_id", referencedColumnName = "client_project_id")
     private ClientProjectEntity clientProjectEntity;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "company_project_id", referencedColumnName = "company_project_id")
     private CompanyProjectEntity companyProjectEntity;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
     private PaymentEntity paymentEntity;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "start_date", referencedColumnName = "start_date")
     @JoinColumn(name = "end_date", referencedColumnName = "end_date")
     private ContractEntity contractEntity;
