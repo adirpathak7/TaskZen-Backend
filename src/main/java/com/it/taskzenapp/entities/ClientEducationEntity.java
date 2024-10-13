@@ -34,19 +34,19 @@ public class ClientEducationEntity {
     private String course;
     private String start_date;
     private String end_date;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     public ClientEducationEntity() {
     }
 
-    public ClientEducationEntity(int client_education_id, ClientMasterEntity cleClientMasterEntity, String university, String course, String start_date, String end_date, LocalDateTime createdAt) {
+    public ClientEducationEntity(int client_education_id, ClientMasterEntity cleClientMasterEntity, String university, String course, String start_date, String end_date, LocalDateTime created_at) {
         this.client_education_id = client_education_id;
         this.cleClientMasterEntity = cleClientMasterEntity;
         this.university = university;
         this.course = course;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public int getClient_education_id() {
@@ -97,12 +97,11 @@ public class ClientEducationEntity {
         this.end_date = end_date;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
-
 }

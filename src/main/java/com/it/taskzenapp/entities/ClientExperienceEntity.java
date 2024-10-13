@@ -34,19 +34,19 @@ public class ClientExperienceEntity {
     private String designation;
     private String starting_date;
     private LocalDateTime ending_date;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     public ClientExperienceEntity() {
     }
 
-    public ClientExperienceEntity(int client_experience_id, ClientMasterEntity clientMasterEntity, String company_name, String designation, String starting_date, LocalDateTime ending_date, LocalDateTime createdAt) {
+    public ClientExperienceEntity(int client_experience_id, ClientMasterEntity clientMasterEntity, String company_name, String designation, String starting_date, LocalDateTime ending_date, LocalDateTime created_at) {
         this.client_experience_id = client_experience_id;
         this.clientMasterEntity = clientMasterEntity;
         this.company_name = company_name;
         this.designation = designation;
         this.starting_date = starting_date;
         this.ending_date = ending_date;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public int getClient_experience_id() {
@@ -97,12 +97,11 @@ public class ClientExperienceEntity {
         this.ending_date = ending_date;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
-
 }

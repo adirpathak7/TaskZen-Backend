@@ -50,12 +50,12 @@ public class PaymentEntity {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     public PaymentEntity() {
     }
 
-    public PaymentEntity(int payment_id, ClientMasterEntity clientMasterEntity, CompanyMasterEntity companyMasterEntity, ClientProjectEntity clientProjectEntity, CompanyProjectEntity companyProjectEntity, String total_amount, String half_pay_amount, String payment_method, Status status, LocalDateTime createdAt) {
+    public PaymentEntity(int payment_id, ClientMasterEntity clientMasterEntity, CompanyMasterEntity companyMasterEntity, ClientProjectEntity clientProjectEntity, CompanyProjectEntity companyProjectEntity, String total_amount, String half_pay_amount, String payment_method, Status status, LocalDateTime created_at) {
         this.payment_id = payment_id;
         this.clientMasterEntity = clientMasterEntity;
         this.companyMasterEntity = companyMasterEntity;
@@ -65,7 +65,7 @@ public class PaymentEntity {
         this.half_pay_amount = half_pay_amount;
         this.payment_method = payment_method;
         this.status = status;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public int getPayment_id() {
@@ -140,12 +140,12 @@ public class PaymentEntity {
         this.status = status;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
     public enum Status {

@@ -25,16 +25,16 @@ public class AdminEntity {
 
     private String email;
     private String password;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     public AdminEntity() {
     }
 
-    public AdminEntity(int admin_id,String email, String password, LocalDateTime createdAt) {
+    public AdminEntity(int admin_id, String email, String password, LocalDateTime created_at) {
         this.admin_id = admin_id;
         this.email = email;
         this.password = password;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public AdminEntity(String email, String password) {
@@ -66,11 +66,11 @@ public class AdminEntity {
         this.password = password;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 }

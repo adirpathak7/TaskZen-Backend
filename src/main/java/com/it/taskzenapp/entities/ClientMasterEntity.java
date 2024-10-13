@@ -42,12 +42,12 @@ public class ClientMasterEntity {
 
     @Enumerated(EnumType.STRING)
     private Client_Status client_status;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     public ClientMasterEntity() {
     }
 
-    public ClientMasterEntity(int client_id, UserEntity userEntity, String contact, String profile_picture, String country, String dob, String gender, String github_link, String linkedin_link, String portfolio_link, Client_Status client_status, LocalDateTime createdAt) {
+    public ClientMasterEntity(int client_id, UserEntity userEntity, String contact, String profile_picture, String country, String dob, String gender, String github_link, String linkedin_link, String portfolio_link, Client_Status client_status, LocalDateTime created_at) {
         this.client_id = client_id;
         this.userEntity = userEntity;
         this.contact = contact;
@@ -59,7 +59,7 @@ public class ClientMasterEntity {
         this.linkedin_link = linkedin_link;
         this.portfolio_link = portfolio_link;
         this.client_status = client_status;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public int getClient_id() {
@@ -150,12 +150,12 @@ public class ClientMasterEntity {
         this.client_status = client_status;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
     public enum Client_Status {
@@ -171,5 +171,4 @@ public class ClientMasterEntity {
             return value;
         }
     }
-
 }

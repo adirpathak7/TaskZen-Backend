@@ -11,7 +11,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -36,7 +35,7 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     @OneToOne(mappedBy = "userEntity")
     private ClientMasterEntity clientMasterEntity;
@@ -57,14 +56,14 @@ public class UserEntity {
         this.password = password;
     }
 
-    public UserEntity(int user_id, String first_name, String last_name, String email, String password, Role role, LocalDateTime createdAt) {
+    public UserEntity(int user_id, String first_name, String last_name, String email, String password, Role role, LocalDateTime created_at) {
         this.user_id = user_id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.password = password;
         this.role = role;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public int getUser_id() {
@@ -115,17 +114,17 @@ public class UserEntity {
         this.role = role;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
     @PrePersist
     protected void onCreate() {
-        createdAt = LocalDateTime.now();
+        created_at = LocalDateTime.now();
     }
 
     public enum Role {
@@ -141,5 +140,4 @@ public class UserEntity {
             return value;
         }
     }
-
 }

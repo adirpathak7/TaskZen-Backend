@@ -42,12 +42,12 @@ public class CompanyProjectEntity {
     @JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
 
     private String duration;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     public CompanyProjectEntity() {
     }
 
-    public CompanyProjectEntity(int company_project_id, CompanyMasterEntity companyMasterEntity, ClientMasterEntity clientMasterEntity, String company_project_name, String details, String project_picture, String duration, LocalDateTime createdAt) {
+    public CompanyProjectEntity(int company_project_id, CompanyMasterEntity companyMasterEntity, ClientMasterEntity clientMasterEntity, String company_project_name, String details, String project_picture, String duration, LocalDateTime created_at) {
         this.company_project_id = company_project_id;
         this.companyMasterEntity = companyMasterEntity;
         this.clientMasterEntity = clientMasterEntity;
@@ -55,7 +55,7 @@ public class CompanyProjectEntity {
         this.details = details;
         this.project_picture = project_picture;
         this.duration = duration;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public int getCompany_project_id() {
@@ -114,12 +114,11 @@ public class CompanyProjectEntity {
         this.duration = duration;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
-
 }

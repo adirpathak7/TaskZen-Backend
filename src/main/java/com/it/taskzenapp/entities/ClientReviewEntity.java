@@ -36,18 +36,18 @@ public class ClientReviewEntity {
 
     private String comment;
     private int rating;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     public ClientReviewEntity() {
     }
 
-    public ClientReviewEntity(int client_review_id, ClientMasterEntity clientMasterEntity, CompanyMasterEntity companyMasterEntity, String comment, int rating, LocalDateTime createdAt) {
+    public ClientReviewEntity(int client_review_id, ClientMasterEntity clientMasterEntity, CompanyMasterEntity companyMasterEntity, String comment, int rating, LocalDateTime created_at) {
         this.client_review_id = client_review_id;
         this.clientMasterEntity = clientMasterEntity;
         this.companyMasterEntity = companyMasterEntity;
         this.comment = comment;
         this.rating = rating;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public int getClient_review_id() {
@@ -90,12 +90,11 @@ public class ClientReviewEntity {
         this.rating = rating;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
-
 }

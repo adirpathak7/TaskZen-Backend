@@ -40,12 +40,12 @@ public class ClientProjectEntity {
     private String project_link;
     private String client_project_github_link;
     private String client_project_linkedin_link;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     public ClientProjectEntity() {
     }
 
-    public ClientProjectEntity(int client_project_id, ClientMasterEntity clientMasterEntity, CompanyMasterEntity companyMasterEntity, String client_project_name, String details, String project_link, String client_project_github_link, String client_project_linkedin_link, LocalDateTime createdAt) {
+    public ClientProjectEntity(int client_project_id, ClientMasterEntity clientMasterEntity, CompanyMasterEntity companyMasterEntity, String client_project_name, String details, String project_link, String client_project_github_link, String client_project_linkedin_link, LocalDateTime created_at) {
         this.client_project_id = client_project_id;
         this.clientMasterEntity = clientMasterEntity;
         this.companyMasterEntity = companyMasterEntity;
@@ -54,7 +54,7 @@ public class ClientProjectEntity {
         this.project_link = project_link;
         this.client_project_github_link = client_project_github_link;
         this.client_project_linkedin_link = client_project_linkedin_link;
-        this.createdAt = createdAt;
+        this.created_at = created_at;
     }
 
     public int getClient_project_id() {
@@ -121,12 +121,11 @@ public class ClientProjectEntity {
         this.client_project_linkedin_link = client_project_linkedin_link;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
-
 }
